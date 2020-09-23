@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  color: MyString
+  image: MyString
+  cost: 1.5
+  times_used: 1
+  category: one
+  date_purchased: 2020-09-23
+  manufacture_location: MyString
+  store: MyString
+
+two:
+  name: MyString
+  color: MyString
+  image: MyString
+  cost: 1.5
+  times_used: 1
+  category: two
+  date_purchased: 2020-09-23
+  manufacture_location: MyString
+  store: MyString
