@@ -1,4 +1,5 @@
 class ItemSerializer
+
   def initialize(item_object)
     @item = item_object
   end
@@ -9,4 +10,5 @@ class ItemSerializer
       :category => {:only => [:name]}
     })
   end
+  
 end
