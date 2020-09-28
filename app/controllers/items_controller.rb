@@ -11,6 +11,12 @@ class ItemsController < ApplicationController
     render json: ItemSerializer.new(item).to_serialized_json
   end
 
+  def update
+    item = Item.find_by(id: params[:id])
+    item.update(item_params)
+    render json: ItemSerializer.new(item).to_serialized_json
+  end
+
   def destroy
     item = Item.find_by(id: params[:id])
     if item.destroy 
