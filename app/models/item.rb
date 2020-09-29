@@ -9,4 +9,9 @@ class Item < ApplicationRecord
   def category_name
     category.name
   end
+
+  def times_used
+    update(times_used: times_used + 1)
+  end
+
 end
