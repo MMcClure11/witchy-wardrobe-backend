@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
       item = Item.find_by(id: params[:id])
       item.update(item_params)
     else
-      item.times_used
+      item.increase_times_used
     end
       render json: ItemSerializer.new(item).to_serialized_json
   end

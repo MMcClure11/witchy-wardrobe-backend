@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     category.name
   end
 
-  def times_used
+  def increase_times_used
     update(times_used: times_used + 1)
   end
 
