@@ -14,4 +14,8 @@ class Item < ApplicationRecord
     update(times_used: times_used + 1)
   end
 
+  def format_date
+    date_purchased.strftime("%b %d, %Y")
+  end 
+
 end

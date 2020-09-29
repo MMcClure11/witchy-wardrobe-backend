@@ -5,7 +5,7 @@ class ItemSerializer
   end
 
   def to_serialized_json
-    @item.to_json(:except => [:created_at, :updated_at],
+    @item.to_json(:only => [:name, :color, :image, :cost, :times_used, :date_purchased, :manufacture_location, :store], methods: :format_date,
     :include => {
       :category => {:only => [:name]}
     })
