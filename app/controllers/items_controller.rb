@@ -7,8 +7,11 @@ class ItemsController < ApplicationController
 
   def create
     item = Item.new(item_params)
-    item.save
-    render json: ItemSerializer.new(item).to_serialized_json
+    if item.save
+      render json: ItemSerializer.new(item).to_serialized_json
+    else
+      render json: {errors: item.errors.full_messages.to_sentence}, status: :unprocessable_entity
+    end
   end
 
   def update
