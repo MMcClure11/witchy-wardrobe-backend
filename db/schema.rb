@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_151849) do
+ActiveRecord::Schema.define(version: 2020_09_30_174112) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -33,5 +33,23 @@ ActiveRecord::Schema.define(version: 2020_09_23_151849) do
     t.index ["category_id"], name: "index_items_on_category_id"
   end
 
+  create_table "outfit_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "outfit_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_outfit_items_on_item_id"
+    t.index ["outfit_id"], name: "index_outfit_items_on_outfit_id"
+  end
+
+  create_table "outfits", force: :cascade do |t|
+    t.string "name"
+    t.integer "likes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "items", "categories"
+  add_foreign_key "outfit_items", "items"
+  add_foreign_key "outfit_items", "outfits"
 end

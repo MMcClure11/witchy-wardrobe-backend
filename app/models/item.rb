@@ -1,6 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :category
 
+  has_many :outfit_items
+  has_many :outfits, through: :outfit_items
+
   validates :name, :color, :image, :cost, :times_used, :date_purchased, :manufacture_location, :store, presence: true
 
   def category_name=(name)
