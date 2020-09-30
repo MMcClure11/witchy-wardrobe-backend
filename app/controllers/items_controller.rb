@@ -17,12 +17,17 @@ class ItemsController < ApplicationController
   def update
     if params[:name]
       item = Item.find_by(id: params[:id])
-      item.update(item_params)
+      if item.update(item_params)
+        render json: ItemSerializer.new(item).to_serialized_json
+      else
+        render json: {errors: item.errors.full_messages.to_sentence}, status: :unprocessable_entity
+      end
     else
       item = Item.find_by(id: params[:id])
       item.increase_times_used
-    end
       render json: ItemSerializer.new(item).to_serialized_json
+    end
+      
   end
 
   def destroy
