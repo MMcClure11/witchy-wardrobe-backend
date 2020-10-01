@@ -14,6 +14,21 @@ class OutfitsController < ApplicationController
     end
   end 
 
+  def update
+    if params[:name]
+      outfit = Outfit.find_by(id: params[:id])
+      if outfit.update(outfit_params)
+        render json: OutfitSerializer.new(outfit).to_serialized_json
+      else
+        render json: {errors: outfit.errors.full_messages.to_sentence}, status: :unprocessable_entity
+      end
+    else
+      outfit = Outfit.find_by(id: params[:id])
+      out.increase_times_loved
+      render json: OutfitSerializer.new(outfit).to_serialized_json
+    end
+  end
+
   def destroy
     outfit = Outfit.find_by(id: params[:id])
     if outfit.destroy 
