@@ -14,6 +14,15 @@ class OutfitsController < ApplicationController
     end
   end 
 
+  def destroy
+    outfit = Outfit.find_by(id: params[:id])
+    if outfit.destroy 
+      render json: {message: "Successfully deleted"}
+    else
+      render json: {error: "There was a problem deleting that outfit."}
+    end
+  end
+
   private 
 
   def outfit_params
