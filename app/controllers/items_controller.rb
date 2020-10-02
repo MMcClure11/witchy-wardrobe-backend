@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
         when "cost" then items = Item.all.sort_by_cost
         end
     else
-      items = Item.all
+      items = Item.all.order(:name)
     end
     render json: ItemSerializer.new(items).to_serialized_json
   end
