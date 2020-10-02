@@ -9,11 +9,7 @@ class ItemsController < ApplicationController
         when "cost" then items = Item.all.sort_by_cost
         end
     elsif params["filter"].present?
-      if params["filter"] == "all"
-        items = Item.all.order(:name)
-      else
-        items = Item.where(category: params["filter"])
-      end
+      params["filter"] == "all" ? items = Item.all.order(:name) : items = Item.where(category: params["filter"])
     else
       items = Item.all.order(:name)
     end
