@@ -3,7 +3,12 @@ class ItemsController < ApplicationController
   def index
     # byebug
     if params["sort"].present?
-      items = Item.sort_by_times_used
+      sort = case params["sort"]
+      when "alphabetical" then items = Item.all.order(:name)
+        when "times_used" then items = Item.all.sort_by_times_used
+        when "color" then items = Item.all.sort_by_color 
+        when "cost" then items = Item.all.sort_by_cost
+        end
     else
       items = Item.all
     end

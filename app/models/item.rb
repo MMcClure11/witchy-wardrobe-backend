@@ -8,6 +8,10 @@ class Item < ApplicationRecord
 
   scope :sort_by_times_used, -> { order(times_used: :desc)}
 
+  scope :sort_by_color, -> { order(color: :asc)}
+
+  scope :sort_by_cost, -> { order(cost: :desc)}
+
   def category_name=(name)
     category = Category.find_by(name: name)
     self.category = category
