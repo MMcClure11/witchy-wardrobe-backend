@@ -1,7 +1,12 @@
 class ItemsController < ApplicationController
 
   def index
-    items = Item.all
+    # byebug
+    if params["sort"].present?
+      items = Item.sort_by_times_used
+    else
+      items = Item.all
+    end
     render json: ItemSerializer.new(items).to_serialized_json
   end
 

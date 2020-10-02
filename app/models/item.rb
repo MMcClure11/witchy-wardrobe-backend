@@ -6,6 +6,8 @@ class Item < ApplicationRecord
 
   validates :name, :color, :image, :cost, :times_used, :date_purchased, :manufacture_location, :store, presence: true
 
+  scope :sort_by_times_used, -> { order(times_used: :desc)}
+
   def category_name=(name)
     category = Category.find_by(name: name)
     self.category = category
