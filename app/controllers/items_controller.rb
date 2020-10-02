@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
 
   def index
-    # byebug
     if params["sort"].present?
       sort = case params["sort"]
       when "alphabetical" then items = Item.all.order(:name)
@@ -9,6 +8,8 @@ class ItemsController < ApplicationController
         when "color" then items = Item.all.sort_by_color 
         when "cost" then items = Item.all.sort_by_cost
         end
+    elsif params["filter"].present?
+      items = Item.where(category: params["filter"])
     else
       items = Item.all.order(:name)
     end
