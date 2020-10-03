@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :outfits, through: :outfit_items, dependent: :destroy
 
   validates :name, :color, :image, :cost, :times_used, :date_purchased, :manufacture_location, :store, presence: true
+  validates :name, length: { maximum: 35 }
 
   scope :sort_by_times_used, -> { order(times_used: :desc)}
 

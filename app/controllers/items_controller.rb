@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
+    # byebug
     if params["sort"].present?
       sort = case params["sort"]
       when "alphabetical" then items = Item.all.order(:name)
