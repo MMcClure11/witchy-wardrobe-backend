@@ -1,23 +1,21 @@
 class ItemsController < ApplicationController
 
   def index
-    byebug
-    if params["sort"].present?
+    if params["filter"].present?
+      params["filter"] == "all" ? filtered_items = Item.all : filtered_items = Item.where(category: params["filter"])
       sort = case params["sort"]
-      when "alphabetical" then items = Item.all.order(:name)
-        when "times_used" then items = Item.all.sort_by_times_used
-        when "color" then items = Item.all.sort_by_color 
-        when "cost" then items = Item.all.sort_by_cost
-        end
-    elsif params["filter"].present?
-      params["filter"] == "all" ? items = Item.all.order(:name) : items = Item.where(category: params["filter"])
+      when "alphabetical" then items = filtered_items.order(:name)
+      when "times_used" then items = filtered_items.sort_by_times_used
+      when "color" then items = filtered_items.sort_by_color 
+      when "cost" then items = filtered_items.sort_by_cost
+      end
     elsif params["query"].present?
-      items = Item.where("name LIKE ?", "%#{params[:query]}%")
+        items = Item.where("name LIKE ?", "%#{params[:query]}%")
     else
-      items = Item.all.order(:name)
+        items = Item.all.order(:name)
     end
-    render json: ItemSerializer.new(items).to_serialized_json
-  end
+      render json: ItemSerializer.new(items).to_serialized_json
+  end 
 
   def create
     item = Item.new(item_params)
