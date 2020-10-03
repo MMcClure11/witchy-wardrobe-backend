@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    # byebug
+    byebug
     if params["sort"].present?
       sort = case params["sort"]
       when "alphabetical" then items = Item.all.order(:name)
@@ -11,6 +11,8 @@ class ItemsController < ApplicationController
         end
     elsif params["filter"].present?
       params["filter"] == "all" ? items = Item.all.order(:name) : items = Item.where(category: params["filter"])
+    elsif params["query"].present?
+      items = Item.where("name LIKE ?", "%#{params[:query]}%")
     else
       items = Item.all.order(:name)
     end
