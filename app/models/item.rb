@@ -30,4 +30,13 @@ class Item < ApplicationRecord
     date_purchased.strftime("%b %d, %Y")
   end 
 
+  def self.sort(filtered_items, sort_params)
+    case sort_params
+      when "alphabetical" then filtered_items.order(:name)
+      when "times_used" then filtered_items.sort_by_times_used
+      when "color" then filtered_items.sort_by_color 
+      when "cost" then filtered_items.sort_by_cost
+    end
+  end
+
 end

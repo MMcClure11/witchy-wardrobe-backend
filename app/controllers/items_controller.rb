@@ -3,12 +3,7 @@ class ItemsController < ApplicationController
   def index
     if params["filter"].present?
       params["filter"] == "all" ? filtered_items = Item.all : filtered_items = Item.where(category: params["filter"])
-      sort = case params["sort"]
-      when "alphabetical" then items = filtered_items.order(:name)
-      when "times_used" then items = filtered_items.sort_by_times_used
-      when "color" then items = filtered_items.sort_by_color 
-      when "cost" then items = filtered_items.sort_by_cost
-      end
+      items = Item.sort(filtered_items, params["sort"])
     elsif params["query"].present?
         items = Item.where("name LIKE ?", "%#{params[:query]}%")
     else
