@@ -4,11 +4,7 @@ class ItemsController < ApplicationController
     if params["filter"].present?
       params["filter"] == "all" ? filtered_items = Item.all : filtered_items = Item.where(category: params["filter"])
       sorted_items = Item.sort(filtered_items, params["sort"])
-      if params["query"].present?
-        items = sorted_items.where("name LIKE ?", "%#{params[:query]}%")
-      else
-        items = sorted_items
-      end
+      params["query"].present? ? items = sorted_items.where("name LIKE ?", "%#{params[:query]}%") :  items = sorted_items
     else
         items = Item.all.order(:name)
     end
