@@ -12,4 +12,8 @@ class Outfit < ApplicationRecord
     end
   end
 
+  def increase_times_loved
+    self.update(likes: likes + 1)
+  end
+
 end

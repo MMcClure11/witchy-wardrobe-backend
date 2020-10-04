@@ -24,7 +24,7 @@ class OutfitsController < ApplicationController
       end
     else
       outfit = Outfit.find_by(id: params[:id])
-      out.increase_times_loved
+      outfit.increase_times_loved
       render json: OutfitSerializer.new(outfit).to_serialized_json
     end
   end
