@@ -14,7 +14,7 @@
 
 ## <a id="about">About the Project</a>
 
-Witchy Wardrobe is a closet organizing SPA that allows you to create items of clothing and outfits. It is intended to help people realize how much they spend on clothes, how often do they use clothing items, and create outfits. It would be a great supplemental tool for someone trying out Project 333, the 4x4 capsule, or any other minimalist closet. You can access the Rails API frontend <a href="https://github.com/MMcClure11/witchy-wardrobe-frontend">here</a>.
+Witchy Wardrobe is a closet organizing SPA that allows you to create items of clothing and outfits. It is intended to help people realize how much they spend on clothes, how often do they use clothing items, and create outfits. It would be a great supplemental tool for someone trying out Project 333, the 4x4 capsule, or any other minimalist closet. You can access the vanilla JavaScript frontend <a href="https://github.com/MMcClure11/witchy-wardrobe-frontend">here</a>. This is the Rails API backend which handles data persistance with Sqlite3.
 
 ## <a id="starting">Getting Started</a>
 
