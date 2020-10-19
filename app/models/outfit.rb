@@ -17,7 +17,14 @@ class Outfit < ApplicationRecord
   end
 
   def self.random_outfit
-    Outfit.new(name: "New Random Outfit", likes: 0, :item_ids => [1, 2, 3])
+    items_array = []
+    Category.all.each do |category|
+      # if !category.items.nil?
+        items_array << category.items.sample
+      end
+    # end
+
+    Outfit.new(name: "New Random Outfit", likes: 0, :items => items_array)
   end
 
 end
