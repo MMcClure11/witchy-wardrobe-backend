@@ -6,11 +6,20 @@ class OutfitsController < ApplicationController
   end
 
   def create 
-    outfit = Outfit.new(outfit_params)
-    if outfit.save
-      render json: OutfitSerializer.new(outfit).to_serialized_json
+    if params[:name]
+      outfit = Outfit.new(outfit_params)
+      if outfit.save
+        render json: OutfitSerializer.new(outfit).to_serialized_json
+      else
+        render json: {errors: outfit.errors.full_messages.to_sentence}, status: :unprocessable_entity
+      end
     else
-      render json: {errors: outfit.errors.full_messages.to_sentence}, status: :unprocessable_entity
+      outfit = Outfit.random_outfit
+      if outfit.save
+        render json: OutfitSerializer.new(outfit).to_serialized_json
+      else
+        render json: {errors: outfit.errors.full_messages.to_sentence}, status: :unprocessable_entity
+      end
     end
   end 
 

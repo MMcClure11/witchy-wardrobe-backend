@@ -16,4 +16,8 @@ class Outfit < ApplicationRecord
     self.update(likes: likes + 1)
   end
 
+  def self.random_outfit
+    Outfit.new(name: "New Random Outfit", likes: 0, :item_ids => [1, 2, 3])
+  end
+
 end
