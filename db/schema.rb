@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_09_30_174112) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 2020_09_30_174112) do
     t.string "image"
     t.float "cost"
     t.integer "times_used"
-    t.integer "category_id", null: false
+    t.bigint "category_id", null: false
     t.date "date_purchased"
     t.string "manufacture_location"
     t.string "store"
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_09_30_174112) do
   end
 
   create_table "outfit_items", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "outfit_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "outfit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_outfit_items_on_item_id"
